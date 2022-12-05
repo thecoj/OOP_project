@@ -1,0 +1,92 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include "identificator.h"
+
+char Delete(char check, char* tableName, char* columnName, char* value, int& whereType, char* command, int tokenType)
+{
+	char* p;
+	int i;
+	p = strtok(command, " ");
+	if (p != NULL)
+	{
+		strcpy(command, command + strlen(p) + 1);
+		commandType(command, &tokenType);
+		if (tokenType != FROM)
+		{
+			printf("Error: missing FROM keyword\n");
+			check = 'N';
+			return check;
+		}
+		strcpy(command, command + 5);
+		commandType(command, &tokenType);
+		if (tokenType != IDENTIFICATOR)
+		{
+			printf("Error: missing table name \n");
+			check = 'N';
+			return check;
+		}
+		else
+		{
+			for (i = 0; i < strlen(p);i++)
+			{
+				tableName[i] = p[i];
+			}
+			tableName[i] = '\0';
+		}
+		strcpy(command, command + strlen(tableName) + 1);
+		commandType(command, &tokenType);
+		if (tokenType != WHERE)
+		{
+			printf("Error: missing condition\n");
+			check = 'N';
+			return check;
+		}
+		strcpy(command, command + 6);
+		commandType(command, &tokenType);
+		if (tokenType != IDENTIFICATOR)
+		{
+			printf("Error: missing column name\n");
+			check = 'N';
+			return check;
+		}
+		else
+		{
+			for (i = 0; i < strlen(p);i++)
+			{
+				columnName[i] = p[i];
+			}
+			columnName[i] = '\0';
+		}
+		strcpy(command, command + strlen(p) + 1);
+		commandType(command, &tokenType);
+		if (tokenType != '=')
+		{
+			printf("Error: Incomplete condition\n");
+			check = 'N';
+			return check;
+		}
+		strcpy(command, command + 2);
+		commandType(command, &tokenType);
+		bool isValue = (tokenType == INTEGER_NB || tokenType == FLOAT_NB || tokenType == IDENTIFICATOR);
+		if (!isValue)
+		{
+			printf("Error: missing value\n");
+			check = 'N';
+			return check;
+		}
+		else
+		{
+			whereType = tokenType;
+			for (i = 0; i < strlen(p);i++)
+			{
+				value[i] = p[i];
+			}
+			value[i] = '\0';
+		}
+		strcpy(command, command + strlen(p) + 1);
+
+	}
+	check = 'Y';
+	return check;
+}
