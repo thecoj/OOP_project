@@ -14,7 +14,7 @@ int ParseDrop( char* tableName, char* command, int tokenType)
 		tip_command(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Eroare: lipseste nume tabela\n");
+			printf("Error: table name missing\n");
 			return 0;
 		}
 		else
