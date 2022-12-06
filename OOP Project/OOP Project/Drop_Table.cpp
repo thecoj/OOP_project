@@ -3,7 +3,7 @@
 #include <string.h>
 #include "identificator.h"
 
-int ParseDrop( char* tableName, char* command, int tokenType)
+int DropTable( char* tableName, char* command, int tokenType)
 {
 	char* p;
 	int i;
@@ -11,7 +11,7 @@ int ParseDrop( char* tableName, char* command, int tokenType)
 	if (p != NULL)
 	{
 		strcpy(command, command + 11);
-		tip_command(command, &tokenType);
+		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
 			printf("Error: table name missing\n");
