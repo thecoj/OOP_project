@@ -3,7 +3,7 @@
 #include <string.h>
 #include "identificator.h"
 
-int displayTable(char* tableName, char* command)
+int DisplayTable(char* tableName, char* command)
 {
 	char* p;
 	int i, tokenType = 0;
@@ -14,19 +14,19 @@ int displayTable(char* tableName, char* command)
 		commandType(command, &tokenType);
 		if (tokenType != TABLE)
 		{
-			printf("Error: TABLE keyword is missing or doesn't exist.\n");
+			printf("ERROR: Missing or misspelt TABLE keyword.\n");
 			return 0;
 		}
 		strcpy(command, command + 6);
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: Table name missing.\n");
+			printf("ERROR: Missing table name.\n");
 			return 0;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				tableName[i] = p[i];
 			}

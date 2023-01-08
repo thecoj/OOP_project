@@ -9,7 +9,7 @@ public:
 	virtual void write(char* name, string s) = 0;
 };
 
-class CommandData : public Data
+class DataCommands : public Data
 {
 public:
 	void create(char* name) override
@@ -37,17 +37,17 @@ public:
 	void create(char* name) override
 	{
 		ofstream f;
-		string nameCSV = name;
-		nameCSV += ".csv";
-		f.open(nameCSV.c_str());
+		string csvName = name;
+		csvName += ".csv";
+		f.open(csvName.c_str());
 		//f.open(name);
 	}
 	void write(char* name, string s) override
 	{
 		ofstream f;
-		string nameCSV = name;
-		nameCSV += ".csv";
-		f.open(nameCSV.c_str());
+		string csvName = name;
+		csvName += ".csv";
+		f.open(csvName.c_str());
 		//f.open(name);
 		f << s << endl;
 	}

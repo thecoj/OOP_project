@@ -19,13 +19,13 @@ public:
 	{
 		cout << "This is a base index" << endl;
 	}
-	virtual void create()
+	virtual void creare()
 	{
-		cout << "This index was created" << endl;
+		cout << "Index created" << endl;
 	}
 	virtual void drop()
 	{
-		cout << "This index was deleted" << endl;
+		cout << "Index dropped" << endl;
 	}
 };
 
@@ -43,18 +43,18 @@ public:
 	}
 	void display()
 	{
-		cout << "This is an index on an int column" << endl;
+		cout << "This index is on an int column" << endl;
 	}
-	void create()
+	void creare()
 	{
 		mapIndexInt.insert(pair<string, multiset<int>>(name, si));
-		cout << "Index was created " << name << endl;
+		cout << "Index created " << name << endl;
 
 	}
 	void drop()
 	{
 		mapIndexInt.erase(name);
-		cout << "Index was deleted " << name << endl;
+		cout << "Index dropped " << name << endl;
 	}
 };
 
@@ -73,17 +73,17 @@ public:
 	}
 	void display()
 	{
-		cout << "This is an index on a float column" << endl;
+		cout << "This index is on an float column" << endl;
 	}
-	void create()
+	void creare()
 	{
 		mapIndexFloat.insert(pair<string, multiset<float>>(name, sf));
-		cout << " Index was created " << name << endl;
+		cout << " Index created " << name << endl;
 	}
 	void drop()
 	{
 		mapIndexFloat.erase(name);
-		cout << "Index was deleted " << name << endl;
+		cout << "Index dropped " << name << endl;
 	}
 
 };
@@ -103,16 +103,16 @@ public:
 	}
 	void display()
 	{
-		cout << "This is an index on a string column" << endl;
+		cout << "This index is on an string column" << endl;
 	}
-	void create()
+	void creare()
 	{
 		mapIndexString.insert(pair<string, multiset<string>>(name, ss));
-		cout << "Index was created " << name << endl;
+		cout << "Index created " << name << endl;
 	}
 	void drop()
 	{
 		mapIndexString.erase(name);
-		cout << "Index was deleted " << name << endl;
+		cout << "Index dropped " << name << endl;
 	}
 };

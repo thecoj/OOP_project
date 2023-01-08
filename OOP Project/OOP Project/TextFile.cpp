@@ -7,32 +7,43 @@
 
 
 using namespace std;
-
-void TextFile::createTextFile(char* nameOfTheFile, char* info)
+/*
+int CreateTable(char* tableName, char* tableInfo, int* size, char* command);
+int DropTable(char* tableName, char* command, int tokenType);
+int DisplayTable(char* tableName, char* command);
+char Delete(char check, char* tableName, char* nameColumnWhere, char* valueWhere, char* command, int tokenType);
+int Update(char* tableName, char* columnNameSet, char* valueSet, char* nameColumnWhere, char* valueWhere, char* command, char* tableInfo);
+int Select(char* tableName, char* command, char* columns);
+int Insert(char* tableName, char* command, char* values);
+int Import(char* tableName, char* command, char* fileName);
+int DropIndex(char* command, char* tableName, char* indexName, int tokenType);
+int CreateIndex(char* tableName, char* indexName, char* columnName, char* command);
+*/
+void TextFile::fileTextCreate(char* fileName, char* info)
 {
 	ofstream myFile;
-	string name = nameOfTheFile;
+	string name = fileName;
 	name += ".txt";
 	myFile.open(name);
 	myFile << info;
 	myFile << endl;
 }
 
-void TextFile::dropTextFile(char* nameOfTheFile, int& result)
+void TextFile::fileTextDrop(char* fileName, int& rez)
 {
-	string textName = nameOfTheFile;
+	string textName = fileName;
 	textName += ".txt";
-	string binaryName = nameOfTheFile;
+	string binaryName = fileName;
 	binaryName += ".bin";
 	if (remove(textName.c_str()) == 0)
-		result = 1;
+		rez = 1;
 	remove(textName.c_str());
 	remove(binaryName.c_str());
 }
 
-void TextFile::displayTextFile(char* nameOfTheFile, char* info)
+void TextFile::fileTextDisplay(char* fileName, char* info)
 {
-	string textName = nameOfTheFile;
+	string textName = fileName;
 	textName += ".txt";
 	ifstream f(textName);
 	char tableInfo[100] = { '\0' };
@@ -59,9 +70,9 @@ char* TextFile::getInfo()
 {
 	return info;
 }
-void TextFile::deserialize(char* nameOfTheFile, char* info)
+void TextFile::deserialization(char* fileName, char* info)
 {
-	string binaryName = nameOfTheFile;
+	string binaryName = fileName;
 	binaryName += ".bin";
 	ifstream g(binaryName, ios::binary);
 	int length = 0;
@@ -72,7 +83,7 @@ void TextFile::deserialize(char* nameOfTheFile, char* info)
 	g.close();
 }
 
-void TextFileCommands::readTextFile(int argc, char* argv[], int i)
+void TextFileCommands::fileTextRead(int argc, char* argv[], int i)
 {
 	//for (int i = 1;i < argc;i++)
 	//{
@@ -80,7 +91,7 @@ void TextFileCommands::readTextFile(int argc, char* argv[], int i)
 	string name = argv[i];
 	fstream fcommands;
 	fcommands.open(name, ios::in); string tmp;
-	cout << "You displayed the content: " << argv[i] << endl;
+	cout << "You displayed the following: " << argv[i] << endl;
 	while (!fcommands.eof())
 	{
 		getline(fcommands, tmp);

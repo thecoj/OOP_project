@@ -12,19 +12,19 @@ public:
 
 	/*virtual void createColumn(char* columnName)
 	{
-		cout << "It should NOT be called";
+		cout << "It sould not call this";
 	}*/
 	virtual void insert(char* columnName, char* values)
 	{
-		cout << "It should NOT be called";
+		cout << "It sould not call this";
 	}
 
 };
 
-class ColumnInt : public Column
+class intColumn : public Column
 {
 public:
-	set<int> createColumnInt(char* columnName)
+	set<int> intColumnCreate(char* columnName)
 	{
 		set<int> s;
 		return s;
@@ -38,8 +38,8 @@ public:
 		p = strtok(values, " ");
 		while (p != NULL)
 		{
-			int noDigits = strlen(p);
-			for (int i = 0; i < noDigits; i++)
+			int digitNumber = strlen(p);
+			for (int i = 0; i < digitNumber; i++)
 			{
 				int digit = p[i] - '0';
 				number += digit * pow(10, i);
@@ -58,9 +58,9 @@ public:
 	}
 };
 
-class ColumnFloat : public Column
+class FloatColumn : public Column
 {
-	set<float> createColumnFloat(char* columnName)
+	set<float> createFloatColumn(char* columnName)
 	{
 		set<float> s;
 		return s;
@@ -68,9 +68,9 @@ class ColumnFloat : public Column
 
 };
 
-class ColumnString : public Column
+class StringColumn : public Column
 {
-	set<string> createColumnString(char* columnName)
+	set<string> createStringColumn(char* columnName)
 	{
 		set<string> s;
 		return s;

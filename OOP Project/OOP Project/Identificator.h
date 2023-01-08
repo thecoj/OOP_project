@@ -8,6 +8,6 @@ enum Token
 	ALL, CREATE, DELETE, DISPLAY, DROP, EXISTS, FLOAT, FROM, IMPORT, INDEX, INSERT, INT, INTO, NOT, ON, SELECT, SET, CSV, CHAR, TABLE, UPDATE, VALUES, WHERE
 };
 
-char* readCommand(char* in);
+char* readCommands(char* in);
 //char* commandLine(char* input);
 void commandType(char* command, int* tokenType);

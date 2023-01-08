@@ -3,7 +3,7 @@
 #include <string.h>
 #include "identificator.h"
 
-char Delete(char check, char* tableName, char* columnName, char* value, int& whereType, char* command, int tokenType)
+char Delete(char check, char* tableName, char* columnName, char* value, int& typeWhere, char* command, int tokenType)
 {
 	char* p;
 	int i;
@@ -14,7 +14,7 @@ char Delete(char check, char* tableName, char* columnName, char* value, int& whe
 		commandType(command, &tokenType);
 		if (tokenType != FROM)
 		{
-			printf("Error: missing FROM keyword\n");
+			printf("ERROR: Missing FROM keyword\n");
 			check = 'N';
 			return check;
 		}
@@ -22,13 +22,13 @@ char Delete(char check, char* tableName, char* columnName, char* value, int& whe
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: missing table name \n");
+			printf("ERROR: Missing table name\n");
 			check = 'N';
 			return check;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				tableName[i] = p[i];
 			}
@@ -38,7 +38,7 @@ char Delete(char check, char* tableName, char* columnName, char* value, int& whe
 		commandType(command, &tokenType);
 		if (tokenType != WHERE)
 		{
-			printf("Error: missing condition\n");
+			printf("ERROR: Missing condition\n");
 			check = 'N';
 			return check;
 		}
@@ -46,13 +46,13 @@ char Delete(char check, char* tableName, char* columnName, char* value, int& whe
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: missing column name\n");
+			printf("ERROR: Missing column name\n");
 			check = 'N';
 			return check;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				columnName[i] = p[i];
 			}
@@ -62,7 +62,7 @@ char Delete(char check, char* tableName, char* columnName, char* value, int& whe
 		commandType(command, &tokenType);
 		if (tokenType != '=')
 		{
-			printf("Error: Incomplete condition\n");
+			printf("ERROR: incomplete condition\n");
 			check = 'N';
 			return check;
 		}
@@ -71,14 +71,14 @@ char Delete(char check, char* tableName, char* columnName, char* value, int& whe
 		bool isValue = (tokenType == INTEGER_NB || tokenType == FLOAT_NB || tokenType == IDENTIFICATOR);
 		if (!isValue)
 		{
-			printf("Error: missing value\n");
+			printf("ERROR: Missing value\n");
 			check = 'N';
 			return check;
 		}
 		else
 		{
-			whereType = tokenType;
-			for (i = 0; i < strlen(p);i++)
+			typeWhere = tokenType;
+			for (i = 0; i < strlen(p); i++)
 			{
 				value[i] = p[i];
 			}

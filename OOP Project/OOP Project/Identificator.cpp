@@ -5,7 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-char* readCommand(char* input)
+char* readCommands(char* input)
 {
 	*input = '\0';
 	string tmp;
@@ -21,6 +21,15 @@ char* readCommand(char* input)
 	}
 	return input;
 }
+
+/*char* commandLine(char* input)
+{
+	char* commandLine;
+	char *newCommandLine;
+	commandLine = strtok(input, ";");
+	newCommandLine = input + strlen(commandLine);
+	return newCommandLine;
+}*/
 
 void commandType(char* command, int* tokenType)
 {
@@ -40,17 +49,17 @@ void commandType(char* command, int* tokenType)
 		else {
 			if (isalpha(*p))
 			{
-				int totalChar = 0;
-				int totalNum = 0;
+				int totalCharacters = 0;
+				int totalNumbers = 0;
 				int pos = 0;
 				for (int i = 0; i < strlen(p); i++)
 				{
 					if (isalpha(*(p + i)))
-						totalChar++;
+						totalCharacters++;
 					else if (isdigit(*(p + i)))
-						totalNum++;
+						totalNumbers++;
 				}
-				if (totalChar == strlen(p))
+				if (totalCharacters == strlen(p))
 				{
 					if (strcmp(p, "CREATE") == 0)
 						*tokenType = CREATE;

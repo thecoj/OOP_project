@@ -3,7 +3,7 @@
 #include <string.h>
 #include "identificator.h"
 
-int DropTable( char* tableName, char* command, int tokenType)
+int DropTable(char* tableName, char* command, int tokenType)
 {
 	char* p;
 	int i;
@@ -14,12 +14,12 @@ int DropTable( char* tableName, char* command, int tokenType)
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: table name missing\n");
+			printf("ERROR: Missing table name\n");
 			return 0;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				tableName[i] = p[i];
 			}

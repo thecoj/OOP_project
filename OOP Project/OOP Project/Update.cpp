@@ -4,10 +4,10 @@
 #include "identificator.h"
 using namespace std;
 
-int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, char* nameColumnWhere, char* valueWhere, int &typeWhere, char* command, char* infoTable)
+int Update(char* tableName, char* columnNameSet, char* valueSet, int& setType, char* nameColumnWhere, char* valueWhere, int& typeWhere, char* command, char* tableInfo)
 {
 	char* p;
-	int i, tokenType = 0; 
+	int i, tokenType = 0;
 	p = strtok(command, " ");
 	if (p != NULL)
 	{
@@ -15,12 +15,12 @@ int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, c
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: table name missing.\n");
+			printf("ERROR: Missing table name.\n");
 			return 0;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				tableName[i] = p[i];
 			}
@@ -30,19 +30,19 @@ int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, c
 		commandType(command, &tokenType);
 		if (tokenType != SET)
 		{
-			printf("Error: missing keyword SET.\n");
+			printf("ERROR: Missing keyword SET.\n");
 			return 0;
 		}
 		strcpy(command, command + 4);
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: missing column name that has to be modified.\n");
+			printf("ERROR: Missing table name to be updated.\n");
 			return 0;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				columnNameSet[i] = p[i];
 			}
@@ -52,7 +52,7 @@ int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, c
 		commandType(command, &tokenType);
 		if (tokenType != '=')
 		{
-			printf("Error: missing sign = .\n");
+			printf("ERROR: Missing = sign .\n");
 			return 0;
 		}
 		strcpy(command, command + 2);
@@ -60,35 +60,35 @@ int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, c
 		bool isValue = (tokenType == INTEGER_NB || tokenType == FLOAT_NB || tokenType == IDENTIFICATOR);
 		if (!isValue)
 		{
-			printf("Error: missing value that needs to be changed.\n");
+			printf("ERROR: Missing value to be updated.\n");
 			return 0;
 		}
 		else
 		{
 			setType = tokenType;
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
-				setValue[i] = p[i];
+				valueSet[i] = p[i];
 			}
-			setValue[i] = '\0';
+			valueSet[i] = '\0';
 		}
 		strcpy(command, command + strlen(p) + 1);
 		commandType(command, &tokenType);
 		if (tokenType != WHERE)
 		{
-			printf("Error: missing condition.\n");
+			printf("ERROR: Missing condition.\n");
 			return 0;
 		}
 		strcpy(command, command + 6);
 		commandType(command, &tokenType);
 		if (tokenType != IDENTIFICATOR)
 		{
-			printf("Error: missing column name.\n");
+			printf("ERROR: Missing table name.\n");
 			return 0;
 		}
 		else
 		{
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				nameColumnWhere[i] = p[i];
 			}
@@ -98,7 +98,7 @@ int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, c
 		commandType(command, &tokenType);
 		if (tokenType != '=')
 		{
-			printf("Error: incomplete condition.\n");
+			printf("ERROR: Incomplete condition.\n");
 			return 0;
 		}
 		strcpy(command, command + 2);
@@ -106,13 +106,13 @@ int Update(char* tableName, char* columnNameSet, char* setValue, int &setType, c
 		isValue = (tokenType == INTEGER_NB || tokenType == FLOAT_NB || tokenType == IDENTIFICATOR);
 		if (!isValue)
 		{
-			printf("Error: missing value.\n");
+			printf("ERROR: Missing value.\n");
 			return 0;
 		}
 		else
 		{
 			typeWhere = tokenType;
-			for (i = 0; i < strlen(p);i++)
+			for (i = 0; i < strlen(p); i++)
 			{
 				valueWhere[i] = p[i];
 			}

@@ -21,14 +21,14 @@ int Select(char* tableName, char* command, char* columns)
 				commandType(command, &tokenType);
 				if (tokenType != FROM)
 				{
-					printf("Error: Missing FROM keyword.\n");
+					printf("ERROR: Missing keyword FROM.\n");
 					return 0;
 				}
 				strcpy(command, command + strlen(p) + 1);
 				commandType(command, &tokenType);
 				if (tokenType != IDENTIFICATOR)
 				{
-					printf("Error: Missing table name.\n");
+					printf("ERROR: Missing table name.\n");
 					return 0;
 				}
 				else
@@ -79,7 +79,7 @@ int Select(char* tableName, char* command, char* columns)
 					commandType(command, &tokenType);
 					if (tokenType != IDENTIFICATOR)
 					{
-						printf("Error: Missing column name. ' %s'\n", p);
+						printf("ERROR: Missing table name. ' %s'\n", p);
 						return 0;
 					}
 					else
@@ -96,14 +96,14 @@ int Select(char* tableName, char* command, char* columns)
 				columns[strlen(columns) + 1] = '\0';
 				if (tokenType != FROM)
 				{
-					printf("Error: misspelled FROM keyword.\n");
+					printf("ERROR: Misspelt FROM keyword.\n");
 					return 0;
 				}
 				strcpy(command, command + strlen(p) + 1);
 				commandType(command, &tokenType);
 				if (tokenType != IDENTIFICATOR)
 				{
-					printf("Error: Missing table name.\n");
+					printf("ERROR: Missing table name.\n");
 					return 0;
 				}
 				else
@@ -120,7 +120,7 @@ int Select(char* tableName, char* command, char* columns)
 		}
 		else
 		{
-			printf("Error: Selected columns do no exist.\n");
+			printf("ERROR: Selected columns do not exist.\n");
 			return 0;
 		}
 	}
