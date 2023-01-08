@@ -45,7 +45,7 @@ void BinaryFile::display(char* tableName)
 	displayFile.close();
 }
 
-void BinaryFile::fileBinaryCreate(char* tableName, char* tableInfo)
+void BinaryFile::fileBinaryCreate(char* tableName, char* tabelInfo)
 {
 	string binaryName = tableName;
 	binaryName += ".bin";
@@ -53,7 +53,7 @@ void BinaryFile::fileBinaryCreate(char* tableName, char* tableInfo)
 	g.close();
 }
 
-void BinaryFileOutput::fileBinaryInsert(char* tableName, char* values, map<string, multiset<int>> mapInt, map<string, multiset<float>> mapFloat, map<string, multiset<string>> mapString)
+void BinaryFileOut::fileBinaryInsert(char* tableName, char* values, map<string, multiset<int>> mapInt, map<string, multiset<float>> mapFloat, map<string, multiset<string>> mapString)
 {
 	string binaryName = tableName;
 	binaryName += ".bin";
@@ -75,13 +75,13 @@ void BinaryFile::importCSV(char* tableName, char* csvName, int& rez)
 	rez = 1;
 
 	string text;
-	string nume = csvName;
-	nume += ".csv";
-	string tableNamea = tableName;
-	tableNamea += ".bin";
+	string name = csvName;
+	name += ".csv";
+	string tableName = tableName;
+	tableName += ".bin";
 	ofstream fTXT;
-	fTXT.open(tableNamea, ios::out | ios::app | ios::binary);
-	fCSV.open(nume, ios::in);
+	fTXT.open(tableName, ios::out | ios::app | ios::binary);
+	fCSV.open(name, ios::in);
 	while (!fCSV.eof())
 	{
 		//fCSV >> text;
@@ -93,7 +93,7 @@ void BinaryFile::importCSV(char* tableName, char* csvName, int& rez)
 
 
 
-	/*fin.open(nume, ios::in);
+	/*fin.open(name, ios::in);
 	vector<string> row;
 	string line, word, temp;
 	ofstream myFile;
@@ -124,8 +124,8 @@ void BinaryFile::importCSV(char* tableName, char* csvName, int& rez)
 void BinaryFile::checkCSV(char* csvName, int& rez)
 {
 	ifstream fCSV;
-	string nume = csvName;
-	nume += ".csv";
+	string name = csvName;
+	name += ".csv";
 	fCSV.open(csvName, ios::in | ios::binary);
 	string af;
 	bool ok = 1;
@@ -161,7 +161,7 @@ void BinaryFile::checkCSV(char* csvName, int& rez)
 	}
 }
 /*
-void BinaryFile::deserialize(char* tableName)
+void BinaryFile::deserialization(char* tableName)
 {
 	string binaryName = tableName;
 	binaryName += ".bin";

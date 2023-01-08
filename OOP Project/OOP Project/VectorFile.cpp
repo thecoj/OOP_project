@@ -1,9 +1,9 @@
-#include "TextFile.h"
+#include "FisierText.h"
 #include "VectorFile.h"
 
 void VectorFile::addFileCreated()
 {
-	this->fileNo++;
+	this->fileNumber++;
 	//this->files = new 
 
 }
