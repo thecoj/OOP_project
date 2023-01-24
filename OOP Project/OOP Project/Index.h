@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <map>
 #include <set>
@@ -19,7 +20,7 @@ public:
 	{
 		cout << "This is a base index" << endl;
 	}
-	virtual void creare()
+	virtual void create()
 	{
 		cout << "Index created" << endl;
 	}
@@ -45,7 +46,7 @@ public:
 	{
 		cout << "This index is on an int column" << endl;
 	}
-	void creare()
+	void create()
 	{
 		mapIndexInt.insert(pair<string, multiset<int>>(name, si));
 		cout << "Index created " << name << endl;
@@ -75,7 +76,7 @@ public:
 	{
 		cout << "This index is on an float column" << endl;
 	}
-	void creare()
+	void create()
 	{
 		mapIndexFloat.insert(pair<string, multiset<float>>(name, sf));
 		cout << " Index created " << name << endl;
@@ -105,7 +106,7 @@ public:
 	{
 		cout << "This index is on an string column" << endl;
 	}
-	void creare()
+	void create()
 	{
 		mapIndexString.insert(pair<string, multiset<string>>(name, ss));
 		cout << "Index created " << name << endl;

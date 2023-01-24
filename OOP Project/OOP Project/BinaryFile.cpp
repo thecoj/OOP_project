@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "BinaryFile.h"
 #include <fstream>
 #include <string>
@@ -7,6 +8,7 @@
 #include <map>
 #include <set>
 using namespace std;
+
 
 void BinaryFile::fileBinaryDisplay(char* tableName, map<string, multiset<int>> mapInt, map<string, multiset<float>> mapFloat, map<string, multiset<string>> mapString)
 {
@@ -67,58 +69,6 @@ void BinaryFileOut::fileBinaryInsert(char* tableName, char* values, map<string, 
 	for (map<string, multiset<string>>::iterator itS = mapString.begin(); itS != mapString.end(); itS++)
 		for (multiset<string>::iterator its = itS->second.begin(); its != itS->second.end(); its++)
 			file << *its << " ";
-}
-
-void BinaryFile::importCSV(char* tableName, char* csvName, int& rez)
-{
-	ifstream fCSV;
-	rez = 1;
-
-	string text;
-	string name = csvName;
-	name += ".csv";
-	string tableName = tableName;
-	tableName += ".bin";
-	ofstream fTXT;
-	fTXT.open(tableName, ios::out | ios::app | ios::binary);
-	fCSV.open(name, ios::in);
-	while (!fCSV.eof())
-	{
-		//fCSV >> text;
-		getline(fCSV, text);
-		fTXT << text << " ";
-		//cout << text << " ";
-	}
-
-
-
-
-	/*fin.open(name, ios::in);
-	vector<string> row;
-	string line, word, temp;
-	ofstream myFile;
-	myFile.open("inserabil.txt");
-
-	while (fin >> temp)
-	{
-
-		row.clear();
-		getline(fin, line);
-		stringstream s(line);
-		while (getline(s, word, ','))
-		{
-			myFile << word;
-			row.push_back(word);
-			rez = 1;
-		}
-
-	}
-
-	string binaryName = tableName;
-	binaryName += ".bin";
-	ofstream file(binaryName, ios::app | ios::binary);
-	file.seekp(0, ios::end);
-	file.write((char*)&row[0], row.size() + 1);*/
 }
 
 void BinaryFile::checkCSV(char* csvName, int& rez)

@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
@@ -81,7 +82,7 @@ int CreateIndex(char* tableName, char* indexName, char* columnName, char* comman
 		commandType(command, &tokenType);
 		if (tokenType != '(')
 		{
-			printf("ERROR: "(" expected \N");
+			printf("ERROR: ( expected \N");
 			return 0;
 		}
 		strcpy(command, command + 2);
